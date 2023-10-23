@@ -1,0 +1,13 @@
+﻿@model RentedHausesDTO
+
+<div class="container">
+    <h1 class="mt-5">Delete Rented House</h1>
+    <div class="mt-3">
+        <h3>You are deleting rented House , @Model.House.Title</h3>
+        <p>Are you sure you want to remove this rented house?</p>
+    </div>
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id" class="mt-3">
+        <button type="submit" class="btn btn-danger">Yes, Delete It</button>
+        <a href="~/RentedHause" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

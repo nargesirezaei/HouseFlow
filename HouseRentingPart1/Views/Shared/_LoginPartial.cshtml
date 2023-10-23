@@ -1,0 +1,21 @@
+<ul class="navbar-nav">
+@if (User != null && User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <li class="nav-item">
+        <a id="manage" class="nav-link" href="/dashboard" title="Manage">
+            Hello @ViewContext.HttpContext.Items["User"] !
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Authentication" asp-action="Logout">Logout</a>
+    </li>
+}
+else
+{   <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login"> Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register" >Register</a>
+    </li>
+}
+</ul>

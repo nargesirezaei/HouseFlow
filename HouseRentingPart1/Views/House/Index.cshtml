@@ -1,0 +1,41 @@
+﻿@model List<HousesDTO>
+
+<h1>List of Houses</h1>
+
+<a href="@Url.Action("Create")" class="btn btn-primary mb-3">Create House</a>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Type</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var house in Model)
+            {
+                <tr>
+                    <td><a href="/House/Details/@house.Id">@house.Title</a></td>
+                    <td>@house.Price</td>
+                    <td>@house.Address</td>
+                    <td>@house.TypeTitle</td>
+                    <td>@house.FromDate</td>
+                    <td>@house.ToDate</td>
+                    <td class="limited-text">@house.Description</td>
+                    <td><a href="/HouseImages/Index?houseId=@house.Id"><i class="fa fa-image fa-2x"></i></a></td>
+                    <td><a class="btn btn-primary btn-sm" style="min-width:60px" href="/House/Edit/@house.Id"><i class="fa fa-edit"></i> Edit</a></td>
+                    <td><a class="btn btn-danger btn-sm" style="min-width:80px" href="/House/Delete/@house.Id"><i class="fa fa-trash"></i> Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

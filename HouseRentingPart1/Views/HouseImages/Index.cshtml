@@ -1,0 +1,41 @@
+﻿@model HouseImagesDTO
+
+@{
+    ViewData["Title"] = "House Images";
+}
+
+<h1 class="mb-4">House Images</h1>
+
+<form enctype="multipart/form-data" method="post" action="/HouseImages/Index" class="mt-4">
+    <input type="hidden" name="houseId" value="@Model.HouseId" />
+    <div class="form-group">
+        <input type="file" name="imageFile" class="form-control-file" required>
+    </div>
+    <input type="submit" value="Upload New Image" class="btn btn-primary mt-4">
+</form>
+
+@if (Model.Images.Count > 0)
+{
+    <div class="row mt-4">
+        @foreach (var image in Model.Images)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="data:image/png;base64,@image.ImageUrl" class="card-img-top" alt="House Image" style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <form enctype="multipart/form-data" method="post" action="/HouseImages/DeleteImage">
+                            <input type="hidden" name="imageId" value="@image.Id" />
+                            <button class="btn btn-danger btn-block">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No images available for this house.</p>
+}
+
+

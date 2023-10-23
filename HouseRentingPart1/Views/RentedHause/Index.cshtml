@@ -1,0 +1,45 @@
+﻿@model List<RentedHausesDTO>
+
+<h2>Rented Houses</h2>
+<hr/>
+
+<div class="text-left">
+    <div class="row">
+        @foreach (var m in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">@m.House.Title</h5>
+                    </div>
+                    <a href="/House/Details/@m.House.Id" class="card-link p-1">
+                        <img src="data:image/png;base64,@m.HouseImage.ImageUrl" class="card-img-top" alt="House Image">
+                    </a>
+                    <div class="card-footer d-flex justify-content-between ">
+                        <div>
+                            <p class="card-text">
+                                <span class="card-info"><i class="fa fa-solid fa-usd"></i> <b>Price:</b> </span> @m.TotalPrice $
+                            </p>
+                            <p class="card-text">
+                                <span class="card-info"><i class="fa fa-solid fa-bed"></i> <b>Type</b>: </span> @m.House.TypeTitle
+                            </p>
+                            <p class="card-text">
+                                <span class="card-info"><i class="fa fa-solid fa-calendar"></i> <b>From</b>: </span> @m.FromDate
+                            </p>
+                                <p class="card-text">
+                                <span class="card-info"><i class="fa fa-solid fa-calendar"></i> <b>To</b>: </span> @m.ToDate
+                            </p>
+                            <p>
+                                <p class="card-text">
+                                <span class="card-info"><i class="fa fa-solid fa-user"></i> <b>Number</b>: </span> @m.Numbers
+                            </p>
+                          </div>
+                           <div>
+                               <a class="btn btn-danger" href="~/RentedHause/PreDelete/@m.Id">Cancel Rented Hause</a>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

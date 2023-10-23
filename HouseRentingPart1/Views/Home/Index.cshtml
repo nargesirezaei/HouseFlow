@@ -1,0 +1,32 @@
+﻿@model List<HouseImagesViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <div class="row">
+        @foreach (var houseWithImages in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">@houseWithImages.House.Title</h5>
+                    </div>
+                    <a href="/House/Details/@houseWithImages.House.Id" class="card-link p-1">
+                        <img src="data:image/png;base64,@houseWithImages.Image.ImageUrl" class="card-img-top" alt="House Image">
+                    </a>
+                    <div class="card-footer">
+
+                        <p class="card-text">
+                            <span class="card-info"><i class="fa fa-solid fa-usd"></i> <b>Price:</b> </span> @houseWithImages.House.Price $
+                        </p>
+                        <p class="card-text">
+                            <span class="card-info"><i class="fa fa-solid fa-bed"></i> <b>Type</b>: </span> @houseWithImages.House.TypeTitle
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
