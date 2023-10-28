@@ -55,9 +55,21 @@ internal class Program
         app.UseRouting();
 
         app.UseAuthorization();
+        using (var scope = app.Services.CreateScope())
+        {
+            var serviceProvider = scope.ServiceProvider;
+
+            // Retrieve the HouseTypesService instance
+            var houseTypesService = serviceProvider.GetRequiredService<IHouseTypesService>();
+            
+            // Call the Seed HouseTypes Data method to seed the database
+            houseTypesService.SeedHouseTypes();
+
+            
+        }
 
 
-        
+
 
         // add middleware
         app.UseMiddleware<AuthenticationMiddleware>();
