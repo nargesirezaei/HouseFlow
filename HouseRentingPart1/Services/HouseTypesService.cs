@@ -16,25 +16,7 @@ namespace HouseFlowPart1.Services
             _houseTypesCollection = _db.GetCollection<HouseTypes>("houseTypes");
         }
 
-        public void SeedHouseTypes()
-        {
-            var types = _houseTypesCollection.Find(_ => true);
-            if (types.Any()) list.AddRange(types.ToList());
-            else
-            {
-                var new_types = new List<HouseTypes>
-                {
-                    //it's better and safer to add static and predefined Id because of relation to other collections
-
-                    new HouseTypes { Title = "Detached House",Id = new MongoDB.Bson.ObjectId("6516a18447331b1448c897f9") },
-                    new HouseTypes { Title = "Apartment",Id = new MongoDB.Bson.ObjectId("6516a18447331b1448c897fa") },
-                    new HouseTypes { Title = "Cottage",Id = new MongoDB.Bson.ObjectId("6516a18447331b1448c897fb") }
-                };
-
-                _houseTypesCollection.InsertMany(new_types);
-                list.AddRange(new_types);
-            }
-        }
+      
 
         public List<HouseTypes> GetAll()
         {

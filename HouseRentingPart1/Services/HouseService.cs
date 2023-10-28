@@ -22,44 +22,7 @@ namespace HouseFlowPart1.Services
         }
 
 
-        public void SeedData()
-        {
-            var houses = _houseCollection.Find(_ => true);
-            if (houses.Any()) return;
-
-            var house = new Houses
-            {
-                Id = ObjectId.Parse("6516f7d3686cf7e02ad554e9"),
-                Title = "Beautiful Studio by the Amstel 2",
-                Address = "Entire loft in Amsterdam, Netherlands",
-                Price = 750,
-                TypeId = ObjectId.Parse("6516a18447331b1448c897fa"),
-                FromDate = DateTime.Parse("2023-09-10T20:30:00.000Z"),
-                ToDate = DateTime.Parse("2023-09-22T20:30:00.000Z"),
-                OwnerId = ObjectId.Parse("651464f29e9afbfdf56a555d"),
-                Description = "The studio is very close to the Weesperzijde, the beautiful avenue along the river Amstel with many nice cafes and restaurants, a lot of houseboats and the best sunset view of the city"
-            };
-
-            _houseCollection.InsertOne(house);
-
-
-            /* to add new hause for seed 
-
-            //house = new Houses
-            //{
-            //    Id = ObjectId.Parse("6516f7d3686cf7e02ad554e9"),
-            //    Title = "House Title",
-            //    Address = "House Address",
-            //    Price = 2000,
-            //    TypeId = ObjectId.Parse("6516a18447331b1448c897fa"),
-            //    FromDate = DateTime.Parse("2023-09-10T20:30:00.000Z"),
-            //    ToDate = DateTime.Parse("2023-09-22T20:30:00.000Z"),
-            //    OwnerId = ObjectId.Parse("651464f29e9afbfdf56a555d"),
-            //    Description = "House Description"
-            //};
-
-            //_houseCollection.InsertOne(house);*/
-        }
+       
 
         public async Task<bool> AddHouseAsync(Houses house)
         {

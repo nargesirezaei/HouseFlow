@@ -26,7 +26,6 @@ internal class Program
         builder.Services.AddSingleton<MongoDBContext>();
 
 
-
         builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
         builder.Services.AddTransient<IHouseTypesService, HouseTypesService>();
 
@@ -58,30 +57,7 @@ internal class Program
         app.UseAuthorization();
 
 
-        // seed db ( define first static datas for data base ) 
-        // seed db ( define first static datas for data base ) 
-        using (var scope = app.Services.CreateScope())
-        {
-            var serviceProvider = scope.ServiceProvider;
-
-            // Retrieve the HouseTypesService instance
-            var houseTypesService = serviceProvider.GetRequiredService<IHouseTypesService>();
-            var houseService = serviceProvider.GetRequiredService<IHouseService>();
-            var houseImages = serviceProvider.GetRequiredService<IHouseImageService>();
-            var users = serviceProvider.GetRequiredService<IAuthenticationService>();
-
-            // Call the Seed HouseTypes Data method to seed the database
-            houseTypesService.SeedHouseTypes();
-
-            // Call the Seed Users Data method to seed the database
-            users.SeedData();
-
-            // Call the Seed House Data method to seed the database
-            houseService.SeedData();
-
-            // Call the Seed House Images Data method to seed the database
-            houseImages.SeedData();
-        }
+        
 
         // add middleware
         app.UseMiddleware<AuthenticationMiddleware>();
