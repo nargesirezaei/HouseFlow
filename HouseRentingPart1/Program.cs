@@ -71,16 +71,16 @@ internal class Program
             var users = serviceProvider.GetRequiredService<IAuthenticationService>();
 
             // Call the Seed HouseTypes Data method to seed the database
-            houseTypesService.SeedHouseTypes();
+            //houseTypesService.SeedHouseTypes();
 
             // Call the Seed Users Data method to seed the database
-            users.SeedData();
+            //users.SeedData();
 
             // Call the Seed House Data method to seed the database
-            houseService.SeedData();
+            //houseService.SeedData();
 
             // Call the Seed House Images Data method to seed the database
-            houseImages.SeedData();
+           // houseImages.SeedData();
         }
 
         // add middleware
