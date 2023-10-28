@@ -14,7 +14,8 @@ namespace HouseFlowPart1.Controllers
         private readonly IAuthenticationService authenticationService;
         private readonly IRentedHauseService rentedHauseService;
 
-        public HouseController(IHouseService houseService, IAuthenticationService authenticationService, IHouseTypesService houseTypesService, IRentedHauseService rentedHauseService)
+        public HouseController(IHouseService houseService, IAuthenticationService authenticationService,
+            IHouseTypesService houseTypesService, IRentedHauseService rentedHauseService)
         {
             _houseService = houseService;
             this.authenticationService = authenticationService;

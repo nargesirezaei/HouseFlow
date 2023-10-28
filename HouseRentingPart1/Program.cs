@@ -1,5 +1,4 @@
-﻿using HouseFlowPart1.Controllers;
-using HouseFlowPart1.Interfaces;
+﻿using HouseFlowPart1.Interfaces;
 using HouseFlowPart1.Middleware;
 using HouseFlowPart1.Models;
 using HouseFlowPart1.Services;

@@ -43,7 +43,7 @@ namespace HouseFlowPart1.Services
             _houseCollection.InsertOne(house);
 
 
-            // to add new hause for seed 
+            /* to add new hause for seed 
 
             //house = new Houses
             //{
@@ -58,7 +58,7 @@ namespace HouseFlowPart1.Services
             //    Description = "House Description"
             //};
 
-            //_houseCollection.InsertOne(house);
+            //_houseCollection.InsertOne(house);*/
         }
 
         public async Task<bool> AddHouseAsync(Houses house)

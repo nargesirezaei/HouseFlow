@@ -10,7 +10,6 @@ namespace HouseFlowPart1.Models
         {
             var mongoConnectionString = configuration["MongoDBSettings:ConnectionString"];
             var databaseName = configuration["MongoDBSettings:DatabaseName"];
-
             var client = new MongoClient(mongoConnectionString);
             _database = client.GetDatabase(databaseName);
         }
