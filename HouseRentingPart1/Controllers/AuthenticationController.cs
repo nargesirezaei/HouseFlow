@@ -20,6 +20,7 @@ namespace HouseFlowPart1.Controllers
         [Route("~/register")]
         public IActionResult Register()
         {
+            // Display the registration view
             return View();
         }
 
@@ -29,11 +30,13 @@ namespace HouseFlowPart1.Controllers
         {
             if (!ModelState.IsValid)
             {
+                // If the model is not valid, return to the registration view
                 return View(model);
             }
 
             if (!Validation.IsValidEmail(model.Email))
             {
+                // Check for valid email format
                 ModelState.AddModelError("INVALID_MAIL", "Enter a valid Email!");
                 return View(model);
             }
@@ -41,6 +44,7 @@ namespace HouseFlowPart1.Controllers
            
             try
             {
+                // Attempt to register the user
                 await _authenticationService.Register(model.Email, model.Password, model.FirstName, model.LastName);
                 TempData["Message"] = "Registration successful.";
                 return RedirectToAction("Login");
@@ -57,6 +61,7 @@ namespace HouseFlowPart1.Controllers
         [Route("~/login")]
         public IActionResult Login()
         {
+            // Display the login view
             return View();
         }
 
@@ -66,10 +71,12 @@ namespace HouseFlowPart1.Controllers
         {
             if (!ModelState.IsValid)
             {
+                // If the model is not valid, return to the login view
                 return View(model);
             }
             if (!Validation.IsValidEmail(model.Email))
             {
+                // Check for valid email format
                 ModelState.AddModelError("INVALID_MAIL", "Enter a valid Email!");
                 return View(model);
             }
@@ -77,6 +84,7 @@ namespace HouseFlowPart1.Controllers
 
             try
             {
+                // Attempt to log in the user
                 var result = await _authenticationService.Login(model.Email, model.Password);
                 if (result)
                 {
@@ -84,12 +92,13 @@ namespace HouseFlowPart1.Controllers
 
                     var user = await _authenticationService.GetCurrentUserByUsername(model.Email);
 
+                    // Create claims for authentication
                     var claims = new List<Claim> {
                             new Claim(ClaimTypes.Name,model.Email),
                         };
 
                     var claimIdentity = new ClaimsIdentity(claims, "Login");
-
+                    // Sign in the user with claims
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
 
@@ -111,6 +120,7 @@ namespace HouseFlowPart1.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            // Sign out the user and redirect to the home page
             await HttpContext.SignOutAsync();
 
             return RedirectToAction("Index", "Home");

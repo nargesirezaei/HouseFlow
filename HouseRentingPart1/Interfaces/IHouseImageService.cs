@@ -9,10 +9,6 @@ namespace HouseFlowPart1.Interfaces
         Task<bool> DeleteImageAsync(ObjectId id);
         Task<HouseImages> GetHouseImageAsync(ObjectId id);
         Task<List<HouseImages>> GetImagesByHouseIdAsync(ObjectId houseId);
-<<<<<<< HEAD
-        
-=======
-       // void SeedData();
->>>>>>> comments
+
     }
 }

@@ -64,10 +64,6 @@ internal class Program
             
             // Call the Seed HouseTypes Data method to seed the database
             //houseTypesService.SeedHouseTypes();
-
-<<<<<<< HEAD
-            
-=======
             // Call the Seed Users Data method to seed the database
             //users.SeedData();
 
@@ -76,7 +72,7 @@ internal class Program
 
             // Call the Seed House Images Data method to seed the database
            // houseImages.SeedData();
->>>>>>> comments
+
         }
 
 

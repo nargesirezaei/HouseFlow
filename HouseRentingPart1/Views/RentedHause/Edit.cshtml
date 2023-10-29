@@ -4,28 +4,32 @@
 
 @using (Html.BeginForm())
 {
+    // Hidden fields to store the IDs
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.UserId)
     @Html.HiddenFor(model => model.HauseId)
 
-    
+    // Form group for the 'From Date' field
     <div class="form-group">
         @Html.LabelFor(model => model.FromDate)
+        <!--  Input field for 'From Date' with pre-filled value -->
         <input type="date" class="form-control" id="fromDate" name="fromDate" value="@Model.FromDate" required />
         @Html.ValidationMessageFor(model => model.FromDate)
     </div>
-
+    // Form group for the 'To Date' field
     <div class="form-group">
         @Html.LabelFor(model => model.ToDate)
+        <!--  Input field for 'To Date' with pre-filled value -->
         <input type="date" class="form-control" id="toDate" name="toDate" value="@Model.ToDate" required />
         @Html.ValidationMessageFor(model => model.ToDate)
     </div>
-
+    // Form group for the 'Numbers' field
     <div class="form-group">
         @Html.LabelFor(model => model.Numbers)
+        <!-- Input field for 'Numbers' -->
         @Html.EditorFor(model => model.Numbers, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.Numbers)
     </div>
-
+    // Button to save changes
     <button type="submit" class="btn btn-primary mt-2">Save</button>
 }

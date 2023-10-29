@@ -3,6 +3,7 @@ namespace HouseFlowPart1
 {
 	public class HousesDTO
 	{
+        // Unique identifier for a house.
         public ObjectId Id { get; set; }
         public string Title { get; set; } = "";
 

@@ -1,19 +1,25 @@
 <ul class="navbar-nav">
 @if (User != null && User.Identity != null && User.Identity.IsAuthenticated)
 {
+        // If the user is authenticated, show these navigation items
     <li class="nav-item">
         <a id="manage" class="nav-link" href="/dashboard" title="Manage">
+                <!-- Greeting the authenticated user -->
             Hello @ViewContext.HttpContext.Items["User"] !
         </a>
     </li>
     <li class="nav-item">
+            <!-- Link to log out (end the user's session) -->
         <a class="nav-link" asp-controller="Authentication" asp-action="Logout">Logout</a>
     </li>
 }
 else
+    // If the user is not authenticated, show these navigation items
 {   <li class="nav-item">
+            <!-- Link to the login page -->
         <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Login"> Login</a>
     </li>
+        <!-- Link to the registration page -->
     <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Authentication" asp-action="Register" >Register</a>
     </li>

@@ -18,9 +18,7 @@ namespace HouseFlowPart1.Services
             _userCollection = this.db.GetCollection<Users>("user");
         }
 
-<<<<<<< HEAD
-       
-=======
+
         /*public void SeedData()
         {
             var Users = _userCollection.Find(_ => true);
@@ -37,7 +35,7 @@ namespace HouseFlowPart1.Services
 
             _userCollection.InsertOne(user);
         }*/
->>>>>>> comments
+
 
         public async Task Register(string email, string password, string firstName, string lastName)
         {

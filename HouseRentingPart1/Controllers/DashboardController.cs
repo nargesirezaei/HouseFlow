@@ -18,13 +18,14 @@ namespace HouseFlowPart1.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-
+            // Check if the user is authenticated
             IIdentity? identity = User.Identity;
 
             if (identity != null && identity.IsAuthenticated)
             {
+                // Get the username of the authenticated user
                 string? username = identity.Name;
-
+                // Retrieve the current user's information using the username
                 Users currentUser = await _authenticationService.GetCurrentUserByUsername(username ?? "");
                 // Use the currentUser object as needed
                 return View(currentUser);
