@@ -22,10 +22,11 @@ namespace HouseFlowPart1.Controllers
             _houseTypesService = houseTypesService;
             this.rentedHauseService = rentedHauseService;
         }
-
+        // Display a list of houses
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            // Check user identity and access rights
             IIdentity? identity = User.Identity;
             var username = identity != null ? identity.Name : "";
             if (string.IsNullOrEmpty(username)) return BadRequest();
@@ -33,6 +34,7 @@ namespace HouseFlowPart1.Controllers
             var user = await authenticationService.GetCurrentUserByUsername(username);
             if (!user.IsAdmin)
             {
+                // Retrieve and display houses for non-admin users
                 var tmp = await _houseService.GetUserHousesAsync(user.Id);
 
                 List<HousesDTO> houses = new();
@@ -57,11 +59,12 @@ namespace HouseFlowPart1.Controllers
             }
             else
             {
+                // Retrieve and display all houses for admin users
                 var houses = await _houseService.GetAllHousesAsync();
                 return View(houses);
             }
         }
-
+        // Display details of a house
         public async Task<IActionResult> Details(string id)
         {
             if (!ObjectId.TryParse(id, out ObjectId objectId))
@@ -78,7 +81,7 @@ namespace HouseFlowPart1.Controllers
                 var userName = User.Identity != null ? User.Identity.Name : string.Empty;
 
                 var user = await authenticationService.GetCurrentUserByUsername(userName ?? "");
-
+                // Retrieve and include rented houses information
                 var rentedHauses = await rentedHauseService.GetRentedHauseByHauseIdAndUserId(model.House.Id, user.Id);
 
                 model.RentedHauses = rentedHauses;
@@ -86,7 +89,7 @@ namespace HouseFlowPart1.Controllers
 
             return View(model);
         }
-
+        // Create a new house
         [Authorize]
         public IActionResult Create()
         {
@@ -98,6 +101,7 @@ namespace HouseFlowPart1.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(HousesDTO dto)
         {
+            // Check user identity and access rights
             IIdentity? identity = User.Identity;
             var username = identity != null ? identity.Name : "";
             if (string.IsNullOrEmpty(username)) return BadRequest();
@@ -107,7 +111,7 @@ namespace HouseFlowPart1.Controllers
 
             Houses house = new()
             {
-
+                // Create a new house and save it
                 Address = dto.Address,
                 Description = dto.Description,
                 FromDate = DateTime.Parse(dto.FromDate).Date,
@@ -133,7 +137,7 @@ namespace HouseFlowPart1.Controllers
                 return View(model);
             }
         }
-
+        // Edit an existing house
         [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
@@ -148,7 +152,7 @@ namespace HouseFlowPart1.Controllers
             {
                 return NotFound();
             }
-
+            // Display the house data for editing
             HousesEditDTO model = new()
             {
                 Data = house,
@@ -166,7 +170,7 @@ namespace HouseFlowPart1.Controllers
             {
                 return BadRequest("Invalid house ID format.");
             }
-
+            // Prepare the updated house object
             Houses house = new()
             {
                 Id = objectId,
@@ -184,6 +188,7 @@ namespace HouseFlowPart1.Controllers
 
             if (!ModelState.IsValid)
             {
+                // Display the editing form with errors
                 HousesEditDTO model = new()
                 {
                     Data = house,
@@ -191,7 +196,7 @@ namespace HouseFlowPart1.Controllers
                 };
                 return View(model);
             }
-
+            // Update the house
             var success = await _houseService.UpdateHouseAsync(house);
 
             if (success)
@@ -205,7 +210,7 @@ namespace HouseFlowPart1.Controllers
                 return View(house);
             }
         }
-
+        // Delete confirmation view
         [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
@@ -223,7 +228,7 @@ namespace HouseFlowPart1.Controllers
 
             return View(house);
         }
-
+        // Handle house deletion
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -239,7 +244,7 @@ namespace HouseFlowPart1.Controllers
             {
                 return NotFound();
             }
-
+            // Delete the house and return to the house list
             var success = await _houseService.DeleteHouseAsync(house);
 
             if (success)

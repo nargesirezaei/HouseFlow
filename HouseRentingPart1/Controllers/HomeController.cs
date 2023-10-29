@@ -16,13 +16,14 @@ public class HomeController : Controller
         this.logService = logService;
         this.houseService = houseService;
     }
-
+    // Display the home page with a list of houses and their images
     public async Task<IActionResult> Index()
     {
+        // Retrieve a list of houses with associated images
         List<HouseImagesViewModel> homesWithImages = await houseService.GetAllHousesWithImages();
         return View(homesWithImages);
     }
-
+    // Generate a log message based on the current request
     private string GenerateLogMessage() {
         // Extract request details from HttpContext
         
@@ -35,15 +36,16 @@ public class HomeController : Controller
         // Construct the log message with request details
         return $"{method} {path}{queryString} - User-Agent: {userAgent}";
     }
-
+    // Handle and log errors with a custom error view
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
+        // Log the exception and display an error view
         logService.WriteExceptionAsync(GenerateLogMessage(), "5XX");
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    
+    // Custom logic for handling not found requests and logging them
     public new IActionResult NotFound()
     {
         // Custom logic for handling not found requests

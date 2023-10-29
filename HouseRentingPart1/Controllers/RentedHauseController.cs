@@ -23,7 +23,7 @@ namespace HouseFlowPart1.Controllers
             this.houseImageService = houseImageService;
             this.houseTypesService = houseTypesService;
         }
-
+        // Display a list of rented houses for the current user
         public async Task<IActionResult> Index()
         {
             if (User.Identity != null && !string.IsNullOrEmpty(User.Identity.Name) && User.Identity.IsAuthenticated)
@@ -37,7 +37,7 @@ namespace HouseFlowPart1.Controllers
 
                 foreach (var x in rentedHauses)
                 {
-
+                    // Retrieve associated house and its image
                     var hause = await houseService.GetHouseAsync(x.HauseId);
 
                     var hauseImage = new HouseImages();
@@ -47,7 +47,7 @@ namespace HouseFlowPart1.Controllers
                     {
                         hauseImage = tmp.First();
                     }
-
+                    // Create a DTO for rented houses
                     model.Add(new RentedHausesDTO
                     {
                         FromDate = $"{x.FromDate:yyyy-MM-dd}",
@@ -72,7 +72,7 @@ namespace HouseFlowPart1.Controllers
             else
                 return RedirectToAction("Index", "Home");
         }
-
+        // Display the rental creation form for a specific house
         [Authorize]
         public async Task<IActionResult> Create(string id)
         {
@@ -96,7 +96,7 @@ namespace HouseFlowPart1.Controllers
                 return BadRequest();
             }
         }
-
+        // Handle the submission of the rental creation form
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(RentedHauses rentedHauses, string id)
@@ -132,6 +132,7 @@ namespace HouseFlowPart1.Controllers
             }
             return View(rentedHauses);
         }
+        // Display the rental edit form
         [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
@@ -172,6 +173,7 @@ namespace HouseFlowPart1.Controllers
             }
 
         }
+        // Handle the submission of the rental edit form
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(RentedHausesDTO rentedHauses)
@@ -198,6 +200,7 @@ namespace HouseFlowPart1.Controllers
             }
             return View(rentedHauses);
         }
+        // Display a confirmation page before deleting a rental
         [Authorize]
         public async Task<IActionResult> PreDelete(string id)
         {
@@ -223,7 +226,7 @@ namespace HouseFlowPart1.Controllers
             return View("delete", model);
         }
 
-
+        // Confirm the deletion of a rental
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {

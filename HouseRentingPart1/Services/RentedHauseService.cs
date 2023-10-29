@@ -17,7 +17,7 @@ namespace HouseFlowPart1.Services
             _db = db;
             _rentedHouseCollection = _db.GetCollection<RentedHauses>("rentedHouses");
         }
-
+        // Add a rented house asynchronously
         public async Task<bool> AddRentedHause(RentedHauses hause)
         {
             try
@@ -30,7 +30,7 @@ namespace HouseFlowPart1.Services
                 return false;
             }
         }
-
+        // Delete a rented house asynchronously by its ID
         public async Task<bool> DeleteRentedHause(ObjectId id)
         {
             try
@@ -44,7 +44,7 @@ namespace HouseFlowPart1.Services
                 return false;
             }
         }
-
+        // Get a rented house by its ID asynchronously
         public async Task<RentedHauses> GetRentedHause(ObjectId Id)
         {
             try
@@ -58,7 +58,7 @@ namespace HouseFlowPart1.Services
                 throw new Exception("Id not found");
             }
         }
-
+        // Get a rented house by HauseId and UserId asynchronously
         public async Task<RentedHauses> GetRentedHauseByHauseIdAndUserId(ObjectId hauseId, ObjectId userId)
         {
             try
@@ -75,7 +75,7 @@ namespace HouseFlowPart1.Services
                 throw new Exception("Rented house not found");
             }
         }
-
+        // Get a list of rented houses by user ID asynchronously
         public async Task<List<RentedHauses>> GetRentedHauses(ObjectId userId)
         {
             try
@@ -89,7 +89,7 @@ namespace HouseFlowPart1.Services
                 throw new Exception("user Id not found");
             }
         }
-
+        // Update a rented house asynchronously
         public async Task<bool> UpdateRentedHause(RentedHauses hause)
         {
             try
