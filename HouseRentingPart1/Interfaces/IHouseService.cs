@@ -14,6 +14,10 @@ namespace HouseFlowPart1.Interfaces
         Task<bool> UpdateHouseAsync(Houses house);
         Task<List<HouseImagesViewModel>> GetAllHousesWithImages();
         Task<HouseDetailViewModel> GetHouseByImagesAsync(ObjectId objectId);
+<<<<<<< HEAD
        
+=======
+        //void SeedData();
+>>>>>>> comments
     }
 }

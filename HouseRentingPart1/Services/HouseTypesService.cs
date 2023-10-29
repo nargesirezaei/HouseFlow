@@ -15,7 +15,12 @@ namespace HouseFlowPart1.Services
             _db = db;
             _houseTypesCollection = _db.GetCollection<HouseTypes>("houseTypes");
         }
+<<<<<<< HEAD
         public void SeedHouseTypes()
+=======
+
+       /* public void SeedHouseTypes()
+>>>>>>> comments
         {
             var types = _houseTypesCollection.Find(_ => true);
             if (types.Any()) list.AddRange(types.ToList());
@@ -34,6 +39,7 @@ namespace HouseFlowPart1.Services
                 list.AddRange(new_types);
             }
         }
+       */
 
 
 

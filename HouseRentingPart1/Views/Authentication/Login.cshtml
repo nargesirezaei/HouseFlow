@@ -5,20 +5,22 @@
 
     @using (Html.BeginForm())
     {
-        
 
+        // Generates a text field for the user's email 
         <div class="form-group">
             <label for="Email">Email:</label>
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Email, "*", new { @class = "text-danger" })
         </div>
-
+        // Generates a password input field for the user's password 
         <div class="form-group">
             <label for="Password">Password:</label>
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Password, "*", new { @class = "text-danger" })
         </div>
+        // Generates a summary of validation errors for the entire form. 
         @Html.ValidationSummary()
+        // Ctears a submit button for the form. 
         <button type="submit" class="btn btn-primary mt-2">Login</button>
     }
 </div>

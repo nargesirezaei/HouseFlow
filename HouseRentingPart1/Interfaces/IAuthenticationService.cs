@@ -7,6 +7,10 @@ namespace HouseFlowPart1.Interfaces
         Task<Users> GetCurrentUserByUsername(string username);
         Task<bool> Login(string email, string password);
         Task Register(string email, string password, string firstName, string lastName);
+<<<<<<< HEAD
         
+=======
+       // void SeedData();
+>>>>>>> comments
     }
 }
