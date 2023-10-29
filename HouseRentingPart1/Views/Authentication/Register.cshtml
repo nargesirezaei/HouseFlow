@@ -5,24 +5,25 @@
 
     @using (Html.BeginForm())
     {
-
+        // Generates a text input field for the user's first name
         <div class="form-group">
             <label for="FirstName">First Name:</label>
             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
         </div>
-
+        // Generates a text input field for the user's last name
         <div class="form-group">
             <label for="LastName">Last Name:</label>
             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
         </div>
+        // Generates a password input field for the user's password 
         <div class="form-group">
             <label for="Email">Email:</label>
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
         </div>
-
+        // Generates a summary of validation errors for the entire form.
         <div class="form-group">
             <label for="Password">Password:</label>
             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
