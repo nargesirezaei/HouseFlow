@@ -13,10 +13,10 @@ namespace HouseFlowPart1.Middleware
             _next = next;
             this.authenticationService = authenticationService;
         }
-
+        // Invoke the middleware to check user authentication and set context items
         public async Task InvokeAsync(HttpContext context)
         {
-            // Check if the user is authenticated
+            // Check if the user is authenticated and set "IsLoggedIn" in the context items
             context.Items["IsLoggedIn"] = false;
             IIdentity? identity = context.User.Identity;
 

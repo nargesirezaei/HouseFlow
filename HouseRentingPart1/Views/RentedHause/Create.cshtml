@@ -4,7 +4,8 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.UserId)
+    // Hidden fields for User ID and House ID
+    @Html.HiddenFor(model => model.UserId) 
     @Html.HiddenFor(model => model.HauseId)
     <div class="form-group">
         @Html.LabelFor(model => model.FromDate)

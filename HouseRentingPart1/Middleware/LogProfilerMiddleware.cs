@@ -13,13 +13,13 @@ namespace HouseFlowPart1.Middleware
             _next = next;
             _Configuration = configuration;
         }
-
+        // Invoke the middleware and write log if enabled
         public async Task InvokeAsync(HttpContext httpContext, ILogService logger)
         {
             WriteLog(logger, httpContext);
             await _next(httpContext);
         }
-
+        // Write a log message if the "LogProfiler" configuration is set to "True"
         private void WriteLog(ILogService logger, HttpContext httpContext)
         {
             var LogProfiler = _Configuration["LogProfiler"];

@@ -9,6 +9,7 @@
         <div class="col-md-8">
             <div id="houseCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
+                    <!-- Carousel images -->
                     @foreach (var image in Model.Images)
                     {
                         <div class="carousel-item @(image == Model.Images.First() ? "active" : "")">
@@ -16,6 +17,7 @@
                         </div>
                     }
                 </div>
+                <!-- Carousel navigation buttons -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#houseCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -37,6 +39,7 @@
                 <li class="list-group-item"><i class="fa fa-calendar" aria-hidden="true"></i> <b>To Date</b>: @Model.House.ToDate</li>
                 <li class="list-group-item"><i class="fa fa-comment-o" aria-hidden="true"></i> <b>Description</b>: @Model.House.Description</li>
             </ul>
+            <!-- Check if the house is rented -->
             @if (Model.RentedHauses != null)
             {
                 <ul class="list-group p-2">

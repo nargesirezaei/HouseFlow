@@ -2,7 +2,7 @@
 {
     public interface ILogService
     {
-        void WriteExceptionAsync(string request, string requestCode);
-        void WriteVisitAsync(string message);
+        void WriteExceptionAsync(string request, string requestCode); // Write an exception log with the given request and code
+        void WriteVisitAsync(string message); // Write a visit log with the provided message
     }
 }

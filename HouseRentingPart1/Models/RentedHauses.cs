@@ -10,6 +10,6 @@ namespace HouseFlowPart1.Models
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public int Numbers { get; set; }
-        public DateTime RequestDate { get; set; } = DateTime.Now;
+        public DateTime RequestDate { get; set; } = DateTime.Now; // Date and time of the rental request, defaults to the current date and time
     }
 }

@@ -1,13 +1,14 @@
 ﻿@model List<HousesDTO>
 
 <h1>List of Houses</h1>
-
+<!-- Button to Create a New House -->
 <a href="@Url.Action("Create")" class="btn btn-primary mb-3">Create House</a>
-
+<!-- Table to Display House Listings -->
 <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
+                <!-- Table Header Columns -->
                 <th>Title</th>
                 <th>Price</th>
                 <th>Address</th>
@@ -21,9 +22,11 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop to Populate House Listing Data -->
             @foreach (var house in Model)
             {
                 <tr>
+                    <!-- House Details -->
                     <td><a href="/House/Details/@house.Id">@house.Title</a></td>
                     <td>@house.Price</td>
                     <td>@house.Address</td>
@@ -31,8 +34,11 @@
                     <td>@house.FromDate</td>
                     <td>@house.ToDate</td>
                     <td class="limited-text">@house.Description</td>
+                    <!-- Link to View House Images -->
                     <td><a href="/HouseImages/Index?houseId=@house.Id"><i class="fa fa-image fa-2x"></i></a></td>
+                    <!-- Edit Button -->
                     <td><a class="btn btn-primary btn-sm" style="min-width:60px" href="/House/Edit/@house.Id"><i class="fa fa-edit"></i> Edit</a></td>
+                    <!-- Delete Button -->
                     <td><a class="btn btn-danger btn-sm" style="min-width:80px" href="/House/Delete/@house.Id"><i class="fa fa-trash"></i> Delete</a></td>
                 </tr>
             }
