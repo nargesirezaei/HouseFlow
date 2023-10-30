@@ -63,7 +63,7 @@ internal class Program
             var houseTypesService = serviceProvider.GetRequiredService<IHouseTypesService>();
             
             // Call the Seed HouseTypes Data method to seed the database
-            //houseTypesService.SeedHouseTypes();
+            houseTypesService.SeedHouseTypes();
             // Call the Seed Users Data method to seed the database
             //users.SeedData();
 
